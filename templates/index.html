@@ -2,59 +2,78 @@
 <html>
 <head>
     <title>Malaria Outbreak Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
+            background-image: url("background.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            margin-top: 100px;
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
             text-align: center;
-        }
-
-        h1, h2 {
-            text-align: center;
-        }
-
-        form {
-            display: inline-block;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
+            margin-bottom: 30px;
         }
 
         input[type="text"],
-        input[type="number"],
-        input[type="submit"] {
-            margin-top: 5px;
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
         input[type="submit"] {
-            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
         }
 
         p {
-            margin-top: 10px;
             text-align: center;
+            margin-top: 20px;
+        }
+
+        .result {
+            margin-top: 40px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
-    <h1>Malaria Outbreak Prediction</h1>
-    <form method="POST" action="/">
-        <label for="city_name">Enter the city name:</label>
-        <input type="text" id="city_name" name="city_name" required>
-        <br>
-        <label for="positive">Positive:</label>
-        <input type="number" id="positive" name="positive" step="0.01" required>
-        <br>
-        <label for="pf">pf:</label>
-        <input type="number" id="pf" name="pf" step="0.01" required>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
-    {% if prediction %}
-    <h2>Result</h2>
-    <p>City: {{ city }}</p>
-    <p>Outbreak: {{ outbreak }}</p>
-    {% endif %}
+    <div class="container">
+        <h1>Malaria Outbreak Prediction</h1>
+        <form method="POST" action="/">
+            <input type="text" id="city_name" name="city_name" placeholder="Enter the city name" required>
+            <input type="number" id="positive" name="positive" step="0.01" placeholder="Positive" required>
+            <input type="number" id="pf" name="pf" step="0.01" placeholder="pf" required>
+            <input type="submit" value="Submit">
+        </form>
+        {% if prediction %}
+        <div class="result">
+            <h2>Result</h2>
+            <p>City: {{ city }}</p>
+            <p>Outbreak: {{ outbreak }}</p>
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
